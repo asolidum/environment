@@ -44,6 +44,13 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
+(defun json-format ()
+  (interactive)
+  (save-excursion
+    (shell-command-on-region (mark) (point) "python -m json.tool" (buffer-name) t)
+    )
+  )
+
 ;---Save the State of Emacs to be Loaded next time it is started---
 (defun gk-state-saver ()
 ;;Save names and cursor positions of all loaded files in ".emacs.files"
