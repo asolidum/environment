@@ -55,7 +55,7 @@
 (defun gk-state-saver ()
 ;;Save names and cursor positions of all loaded files in ".emacs.files"
   (interactive)
-  (setq fname (format "%s.emacs.files" gk-startdir))
+  (setq fname (format "~/.emacs.files" gk-startdir))
   (cond 
    ((buffer-file-name)
     (setq currentbuffer (buffer-name)))
@@ -83,7 +83,7 @@
 	  (insert (format "(switch-to-buffer \"%s\")\n" currentbuffer))))
 	(set-visited-file-name fname)
 	(save-buffer)
-	(kill-buffer ".emacs.files")
+	(kill-buffer "~/.emacs.files")
 	(cond
 	 (currentbuffer
 	  (switch-to-buffer currentbuffer))))))
@@ -102,8 +102,8 @@
 
 ;--- Load files from .emacs.files -----------
 (cond
- ((file-exists-p ".emacs.files")
-  (load-file ".emacs.files")))
+ ((file-exists-p "~/.emacs.files")
+  (load-file "~/.emacs.files")))
 
 (add-to-list 'load-path "~/emacs/ruby-mode")
 (autoload 'ruby-mode "ruby-mode" "Major mode for editing Ruby code" t)
