@@ -23,6 +23,10 @@
 ;; Dont show the GNU splash screen
 (setq inhibit-startup-message t)
 
+;; Don't clutter up directories with files~
+;(setq backup-directory-alist `(("." . ,(expand-file-name
+;                                        (concat dotfiles-dir "backups")))))
+
 ;;; Tabbing stuff
 (require 'tabbar)
 (tabbar-mode) ;comment out this line to start without the tab on top
@@ -94,6 +98,9 @@
  'kill-emacs-hook
  '(lambda () 
     (gk-state-saver)))
+
+;--- Automatically remove trailing-whitespace
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;--- Remember from where emacs was started --
 (defvar gk-startdir default-directory)
